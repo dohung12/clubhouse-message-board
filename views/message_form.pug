@@ -1,0 +1,23 @@
+extends layout 
+block content 
+
+  h1 Create new message 
+  if currentUser.membership
+    form(action="", method="post") 
+      .row.mb-3 
+        label.col-sm-2.col-form-label(for="title") Title
+        .col-sm-10
+          input#title.form-control(type="text", name="title" , placeholder='Message\'s title', value = message ? message.title : '')
+      .row.mb-3 
+        label.col-sm-2.col-form-label(for="messageText") Message
+        .col-sm-10
+          textarea#messageText.form-control(name="messageText", rows="3", value= message ? message.message : '' ) 
+      
+      button.btn.btn-primary(type="submit") Submit
+  else 
+    p Please verify your membership status 
+    
+  if errors 
+    ul
+    for error in errors 
+      li!= error

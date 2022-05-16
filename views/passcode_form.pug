@@ -1,0 +1,19 @@
+extends layout 
+block content 
+
+ h1= title
+
+ if verify 
+  h4 User already verify #[strong #{type} status]  
+
+ else
+  form(action="", method="post") 
+    .mb-3
+      label(for="passcode") Enter the #{type} secret passcode
+      input#passcode.form-control(type="text", name="passcode", placeholder="Passcode", value = passcode ? passcode: '') 
+    button.btn.btn-primary(type="submit") Enter
+
+ if errors 
+  ul 
+   for error in errors 
+    li!= error.msg

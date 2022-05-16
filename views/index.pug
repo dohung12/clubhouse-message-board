@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  if currentUser 
+    h1 List of all messages
+
+    if messages
+      .container.g-4.my-4
+        .row
+         each message in messages 
+          .col-md-6
+            .card.border-dark.mb-3
+              .card-header.text-end #{message.user.username}
+              .card-body
+                h5.card-title.text-primary #{message.title}
+                p.card-text #{message.message}
+                if message.user.admin 
+                  a.btn.btn-primary(href=message.url +  "/delete") Delete
+              .card-footer.text-end  #{message.createAt_formatted}
+    else 
+      h2 There are no messages
+
+  else
+    h1 Please log in 
+    form(action="/log-in", method="post") 
+      .mb-3
+        label(for="username") Username 
+        input#username.form-control(type="text", name="username", placeholder="username")
+        label(for="password") Password
+        input#password.form-control(type="password", name="password")
+        hr
+        button.btn.btn-primary Log in
+        a.ms-2(href="/sign-up") Sign up 

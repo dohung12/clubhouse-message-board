@@ -1,0 +1,17 @@
+extends layout 
+block content 
+
+ h1 Delete message
+ p #[strong Do you really want to delete this Message?]
+
+ .card.border-primary.mb-3 
+  .card-header #{message.user.fullName}
+  .card-body 
+   h5.card-title.text-primary #{message.title}
+   p.card-text #{message.message}
+  .card-footer  #{message.createAt_formatted}
+
+ form(method='POST' action='')
+  div.form-group
+   input#id.form-control(type='hidden',name='id', required='true', value=message._id )
+  button.btn.btn-primary(type='submit') Delete
