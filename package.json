@@ -2,6 +2,9 @@
   "name": "clubhouse-messageboard",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "16.15.0"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
